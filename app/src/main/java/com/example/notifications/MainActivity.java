@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
                         .setContentTitle("Tittle")
                         .setContentText("Android Wear Notification")
                         .setContentIntent(pendingMapIntent)
-                        .addAction(android.R.drawable.ic_menu_call,"Call",callPendingIntent)
+                        .addAction(R.mipmap.ic_action_call,"Call",callPendingIntent)
                         .build();
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
                 notificationManager.notify(notificationId, notification);
             }
         });
-
     }
 
 
