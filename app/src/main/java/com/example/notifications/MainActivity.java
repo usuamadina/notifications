@@ -23,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent mapIntent =  new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=playa+de+la+concha"));
                 PendingIntent pendingMapIntent = PendingIntent.getActivity(MainActivity.this, 0, mapIntent,0);
+                Intent callIntent = new Intent(Intent.ACTION_VIEW,Uri.parse("tel:555123456"));
+                PendingIntent callPendingIntent = PendingIntent.getActivity(MainActivity.this, 0 , callIntent,0);
                 int notificationId = 001;
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Tittle")
                         .setContentText("Android Wear Notification")
                         .setContentIntent(pendingMapIntent)
+                        .addAction(android.R.drawable.ic_menu_call,"Call",callPendingIntent)
                         .build();
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
                 notificationManager.notify(notificationId, notification);
