@@ -3,6 +3,7 @@ package com.example.notifications;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         wearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mapIntent =  new Intent(MainActivity.this, MainActivity.class);
+                Intent mapIntent =  new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=playa+de+la+concha"));
                 PendingIntent pendingMapIntent = PendingIntent.getActivity(MainActivity.this, 0, mapIntent,0);
                 int notificationId = 001;
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
