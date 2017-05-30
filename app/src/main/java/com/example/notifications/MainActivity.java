@@ -39,17 +39,25 @@ public class MainActivity extends AppCompatActivity {
                 actionList.add(action);
                 actionList.add(new NotificationCompat.Action(R.mipmap.ic_action_locate, "Show Map", pendingMapIntent));
 
+
+                NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
+                        .setHintHideIcon(true)
+                        .setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
+                        .addActions(actionList);
+
                 String s = "Come on, It's such a beautiful day today, let's go to the beach!! ";
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Tittle")
                         .setContentText("Let's go to the beach!")
                         .setContentIntent(pendingMapIntent)
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
+                       // .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
                         .addAction(R.mipmap.ic_action_call, "Call", callPendingIntent)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(s+s+s))
-                        .extend(new NotificationCompat.WearableExtender().addActions(actionList))
+                       // .extend(new NotificationCompat.WearableExtender().addActions(actionList))
+                        .extend(wearableExtender)
                         .build();
+
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
                 notificationManager.notify(notificationId, notification);
             }
