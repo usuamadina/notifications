@@ -17,6 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     final static String MY_NOTIFCATION_GROUP = "my_notification_group";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,19 @@ public class MainActivity extends AppCompatActivity {
                         .setGroup(MY_NOTIFCATION_GROUP)
                         .build();
                 notificationManager.notify(idNotification2, notification2);
+
+
+                int idNotificacion3 = 003;
+                Notification notificacion3 = new NotificationCompat.Builder(MainActivity.this)
+                        .setContentTitle("2 Conference Notifications")
+                        .setSmallIcon(R.mipmap.ic_action_attach)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.conference))
+                        .setStyle(new NotificationCompat.InboxStyle()
+                                .addLine("New Conference Los neutrinos")
+                                .addLine("New Android Wear Course").setBigContentTitle("2 Conference Notifications")
+                                .setSummaryText("info@upv.es")).setNumber(2)
+                        .setGroup(MY_NOTIFCATION_GROUP).setGroupSummary(true).build();
+                notificationManager.notify(idNotificacion3, notificacion3);
 
             }
         });
