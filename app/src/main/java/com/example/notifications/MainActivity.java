@@ -3,6 +3,7 @@ package com.example.notifications;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         .setContentTitle("Tittle")
                         .setContentText("Android Wear Notification")
                         .setContentIntent(pendingMapIntent)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
                         .addAction(R.mipmap.ic_action_call, "Call", callPendingIntent)
                         .extend(new NotificationCompat.WearableExtender().addActions(actionList))
                         .build();
