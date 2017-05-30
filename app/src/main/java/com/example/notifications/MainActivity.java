@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    final static String MY_NOTIFCATION_GROUP = "my_notification_group";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +56,15 @@ public class MainActivity extends AppCompatActivity {
                 notificationList.add(notificationPg3);
 
 
+                // Stacking notifications
+
+
                 NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
                         .setHintHideIcon(true)
                         .setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.beach_time))
                         .addActions(actionList)
                         .addPages(notificationList);
-                    //    .addPage(notificationPg2)
+                //    .addPage(notificationPg2)
 
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setSmallIcon(R.mipmap.ic_launcher)
@@ -73,10 +76,20 @@ public class MainActivity extends AppCompatActivity {
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(s + s + s))
                         // .extend(new NotificationCompat.WearableExtender().addActions(actionList))
                         .extend(wearableExtender)
+                        .setGroup(MY_NOTIFCATION_GROUP)
                         .build();
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
                 notificationManager.notify(notificationId, notification);
+
+                int idNotification2 = 002;
+                Notification notification2 = new NotificationCompat.Builder(MainActivity.this)
+                        .setContentTitle("New Conference").setContentText("Los neutrinos")
+                        .setSmallIcon(R.mipmap.ic_action_mail_add)
+                        .setGroup(MY_NOTIFCATION_GROUP)
+                        .build();
+                notificationManager.notify(idNotification2, notification2);
+
             }
         });
     }
