@@ -39,22 +39,39 @@ public class MainActivity extends AppCompatActivity {
                 actionList.add(action);
                 actionList.add(new NotificationCompat.Action(R.mipmap.ic_action_locate, "Show Map", pendingMapIntent));
 
+                String s = "Come on, It's such a beautiful day today, let's go to the beach!! ";
+
+                //Creating a BigTextStyle for the second page and third page
+                NotificationCompat.BigTextStyle secondPage = new NotificationCompat.BigTextStyle();
+                secondPage.setBigContentTitle("Page 2").bigText("More text");
+
+                NotificationCompat.BigTextStyle thirdPage = new NotificationCompat.BigTextStyle();
+                thirdPage.setBigContentTitle("Page 3").bigText("Much more text");
+
+                Notification notificationPg2 = new NotificationCompat.Builder(MainActivity.this).setStyle(secondPage).build();
+                Notification notificationPg3 = new NotificationCompat.Builder(MainActivity.this).setStyle(thirdPage).build();
+
+                List<Notification> notificationList = new ArrayList<Notification>();
+                notificationList.add(notificationPg2);
+                notificationList.add(notificationPg3);
+
 
                 NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender()
                         .setHintHideIcon(true)
-                        .setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
-                        .addActions(actionList);
+                        .setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.beach_time))
+                        .addActions(actionList)
+                        .addPages(notificationList);
+                    //    .addPage(notificationPg2)
 
-                String s = "Come on, It's such a beautiful day today, let's go to the beach!! ";
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Tittle")
                         .setContentText("Let's go to the beach!")
                         .setContentIntent(pendingMapIntent)
-                       // .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
+                        // .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
                         .addAction(R.mipmap.ic_action_call, "Call", callPendingIntent)
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText(s+s+s))
-                       // .extend(new NotificationCompat.WearableExtender().addActions(actionList))
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(s + s + s))
+                        // .extend(new NotificationCompat.WearableExtender().addActions(actionList))
                         .extend(wearableExtender)
                         .build();
 
