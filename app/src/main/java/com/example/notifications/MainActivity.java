@@ -33,19 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
                 int notificationId = 001;
 
-                NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.mipmap.ic_action_call, "Wear Call", callPendingIntent).build();
+                NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.mipmap.ic_action_call, "Call", callPendingIntent).build();
 
                 List<NotificationCompat.Action> actionList = new ArrayList<NotificationCompat.Action>();
                 actionList.add(action);
                 actionList.add(new NotificationCompat.Action(R.mipmap.ic_action_locate, "Show Map", pendingMapIntent));
 
+                String s = "Come on, It's such a beautiful day today, let's go to the beach!! ";
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Tittle")
-                        .setContentText("Android Wear Notification")
+                        .setContentText("Let's go to the beach!")
                         .setContentIntent(pendingMapIntent)
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.beach_time))
                         .addAction(R.mipmap.ic_action_call, "Call", callPendingIntent)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(s+s+s))
                         .extend(new NotificationCompat.WearableExtender().addActions(actionList))
                         .build();
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
