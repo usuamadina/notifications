@@ -28,4 +28,9 @@
         android:layout_height="wrap_content"
         android:text="..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    <Button
+        android:id="@+id/broadcastVoiceBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Respuesta por voz (Broadcast)" />
 </LinearLayout>
